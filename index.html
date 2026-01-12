@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐟️鱼蛋复杂度计算器</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>🐟️鱼蛋难度计算器</h1>
+
+        <div class="input-group">
+            <label>输入由 o,x 组成的鱼蛋序列 (o = Don, x = Ka)</label>
+            <input type="text" id="patternInput" value="ooxxooxxooxxooxx" placeholder="例如: ooxx">
+            <div class="help-text">支持输入: o, x (自动过滤其他字符)</div>
+        </div>
+
+        <h3>预览</h3>
+        <div class="taiko-container-wrapper main-wrapper">
+            <div class="taiko-track" id="noteTrack">
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="metrics-container">
+            <div class="metric-card">
+                <div class="metric-label">难度评分</div>
+                <div class="metric-value" id="diffScore">0.000</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">运手难度配分</div>
+                <div class="metric-value sub-score">
+                    <span id="handScore">0.000</span>
+                    <span class="metric-percent" id="handPct">(0%)</span>
+                </div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">读谱难度配分</div>
+                <div class="metric-value sub-score">
+                    <span id="readScore">0.000</span>
+                    <span class="metric-percent" id="readPct">(0%)</span>
+                </div>
+            </div>
+            <div class="metric-card" style="display: flex; align-items: center;">
+                <div class="info-box" id="noteCountBox">
+                    音符个数: 0
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <h3>参考区</h3>
+        <div class="reference-container" id="referenceSection">
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
