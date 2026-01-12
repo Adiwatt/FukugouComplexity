@@ -68,7 +68,10 @@ input[type="text"]:focus {
     border: 2px solid #333;
     border-radius: 8px;
     padding: 10px 0;
-    margin-bottom: 20px;
+    margin-bottom: 0; /* 下方紧接图表 */
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom: none;
     overflow-x: auto;
 }
 
@@ -87,10 +90,49 @@ input[type="text"]:focus {
     height: 90px;
 }
 
+/* 图表容器 */
+.chart-container {
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: #1c1c1c;
+    border: 2px solid #333;
+    border-top: 1px solid #444; /* 分隔线 */
+    border-radius: 8px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    padding: 10px 0; 
+    box-sizing: border-box;
+    overflow-x: auto; /* 允许滚动 */
+    overflow-y: hidden;
+    position: relative;
+}
+
+#complexityChart {
+    display: block;
+    /* width 会由 JS 动态设置 */
+    height: 150px;
+}
+
+.chart-tooltip {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #ffbd45;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    pointer-events: none;
+    display: none;
+    white-space: nowrap;
+    border: 1px solid #ffbd45;
+    transform: translate(-50%, -100%);
+    margin-top: -8px;
+    z-index: 10;
+}
+
 /* 参考区特定样式 */
 .ref-row {
     display: flex;
-    flex-direction: column; /* 手机端垂直排列，大屏横向 */
+    flex-direction: column; 
     align-items: flex-start;
     margin-bottom: 1.5rem;
     background-color: #161920;
@@ -108,23 +150,23 @@ input[type="text"]:focus {
 }
 
 .ref-visual {
-    /* 强制固定宽度 640px + padding */
     width: 680px; 
     max-width: 100%;
     overflow-x: auto;
 }
 
 .ref-visual .taiko-container-wrapper {
-    width: 670px; /* 核心宽度 */
+    width: 670px; 
     margin-bottom: 0;
     border: 1px solid #444;
     padding: 5px 0;
+    border-radius: 8px; /* 参考区不需要和图表拼接，恢复圆角 */
+    border-bottom: 1px solid #444;
 }
 
 .ref-visual .taiko-track {
     height: 50px;
     padding: 0 10px;
-    /* 16 notes * 40px = 640px */
     width: max-content; 
 }
 
@@ -168,34 +210,31 @@ input[type="text"]:focus {
     font-family: sans-serif;
     color: rgba(255,255,255,0.8);
     position: relative;
+    flex-shrink: 0; /* 防止压缩 */
 }
 
 /* 主预览音符 */
 .main-wrapper .note {
     width: 60px;
     height: 60px;
-    min-width: 60px;
     font-size: 18px;
-    margin-right: 0px;
+    margin-right: 0px; /* 紧密排列 */
 }
 
 @media (min-width: 768px) {
     .main-wrapper .note {
         width: 80px;
         height: 80px;
-        min-width: 80px;
         font-size: 24px;
         border-width: 4px;
     }
 }
 
-/* 参考区小音符 (40px) */
 .note.mini {
     width: 40px;
     height: 40px;
-    min-width: 40px;
     border-width: 2px;
-    font-size: 0; /* 不显示文字问号，或者设得很小 */
+    font-size: 0; 
 }
 
 .note.don {
